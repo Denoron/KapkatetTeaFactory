@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex" id="wrapper">
+
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div id="main" class="flex-grow">
+        <div th:replace="admin/fragments/topbar :: topbar"></div>
+        <hr>
+
+        <div id="content">
+            <div class="flex items-center justify-between px-4 py-3">
+                <h4 class="text-xl font-bold" th:text="${user.name}"></h4>
+            </div>
+
+            <div class="px-4 pt-6">
+                <div class="w-full flex justify-between items-center">
+                    <span class="font-normal text-gray-900 text-lg">Name</span>
+                    <span class="font-normal text-green-700" th:text="${user.name}"></span>
+                </div>
+            </div>
+
+            <div class="px-4 pt-6">
+                <div class="w-full flex justify-between items-center">
+                    <span class="font-normal text-gray-900 text-lg">National ID Number</span>
+                    <span class="font-normal text-green-700" th:text="${user.nationalId}"></span>
+                </div>
+            </div>
+
+            <div class="px-4 pt-6">
+                <div class="w-full flex justify-between items-center">
+                    <span class="font-normal text-gray-900 text-lg">Email</span>
+                    <span class="font-normal text-green-700" th:text="${user.email}"></span>
+                </div>
+            </div>
+
+            <div class="px-4 pt-6">
+                <div class="w-full flex justify-between items-center">
+                    <span class="font-normal text-gray-900 text-lg">Role</span>
+                    <span class="font-normal text-green-700" th:text="${user.role.title}"></span>
+                </div>
+            </div>
+
+            <div class="px-4 pt-6">
+                <div class="w-full flex justify-end items-center">
+                    <a class="px-4 py-2 bg-blue-700 text-white rounded"
+                       th:href="${'/admin/users/' + user.id + '/edit'}">Edit</a>
+
+                    <form th:action="${'/admin/users/' + user.id + '/delete'}" method="post">
+                        <button class="px-4 py-2 bg-red-700 text-white rounded ml-3" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex" id="wrapper">
+
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div id="main" class="flex-grow">
+        <div th:replace="admin/fragments/topbar :: topbar"></div>
+        <hr>
+
+        <div id="content">
+            <div class="flex items-center justify-between px-4 py-3">
+                <h4 class="text-xl font-bold">Monthly Cumulative Tea Records </h4>
+
+                <form th:action="@{/admin/records/pay}" method="post">
+                    <button class="px-4 py-2 rounded bg-green-700 text-gray-300" type="submit">
+                        Initiate Payment
+                    </button>
+                </form>
+            </div>
+
+            <div class="px-4">
+                <table class="table-auto border-collapse border w-full">
+                    <thead>
+                    <tr>
+                        <th class="px-4 py-2">Account Number</th>
+                        <th class="px-4 py-2">Cumulative Weight(Kgs)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cumulativeRecord : ${cumulativeRecords}">
+                        <td class="border px-4 py-2" th:text="${cumulativeRecord.accountId}"></td>
+                        <td class="border px-4 py-2" th:text="${cumulativeRecord.totalWeight}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex" id="wrapper">
+
+    <div th:replace="clerk/fragments/sidebar :: sidebar"></div>
+
+    <div id="main" class="flex-grow">
+        <div th:replace="clerk/fragments/topbar :: topbar"></div>
+        <hr>
+
+        <div id="content">
+            <div class="flex items-center justify-between px-4 py-3">
+                <h4 class="text-xl font-bold">Today's Tea Records</h4>
+
+                <a href="/admin/locations/create" th:href="${'/clerk/records/' + centerId + '/create'}"
+                   class="px-4 py-2 rounded bg-green-700 text-gray-300">Add Tea Record</a>
+            </div>
+
+            <div class="px-4">
+                <table class="table-auto border-collapse border w-full">
+                    <thead>
+                    <tr>
+                        <th class="px-4 py-2">ID</th>
+                        <th class="px-4 py-2">Center</th>
+                        <th class="px-4 py-2">Account</th>
+                        <th class="px-4 py-2">Weight(Kgs)</th>
+                        <th class="px-4 py-2">Created At</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="teaRecord : ${teaRecords}">
+                        <td class="border px-4 py-2" th:text="${teaRecord.id}"></td>
+                        <td class="border px-4 py-2" th:text="${teaRecord.center.name}"></td>
+                        <td class="border px-4 py-2" th:text="${teaRecord.account.user.name}"></td>
+                        <td class="border px-4 py-2" th:text="${teaRecord.weightKgs}"></td>
+                        <td class="border px-4 py-2" th:text="${teaRecord.createdAt}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

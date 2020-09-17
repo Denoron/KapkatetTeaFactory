@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="flex" id="wrapper">
+        <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+        <div id="main" class="flex-grow">
+
+            <div th:replace="admin/fragments/topbar :: topbar"></div>
+            <hr>
+
+            <div id="content">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <h4 class="text-xl font-bold">Create Center</h4>
+                </div>
+
+                <div class="px-4">
+
+                    <form th:action="@{/admin/centers}" th:object="${center}" method="post">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
+                                Name
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <input id="name" type="text" required autofocus th:field="*{name}" name="name"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 " />
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6">
+                            <label for="location" class="block text-sm font-medium text-gray-700 leading-5">
+                                Location
+                            </label>
+
+                            <div class="mt-1 rounded-md shadow-sm">
+                                <select id="location" type="text" required th:field="*{location}" name="location"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                    <option value="">Choose Location...</option>
+                                    <option th:each="location : ${locations}" th:value="${location.id}"
+                                        th:text="${location.name}"></option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="mt-6">
+                            <button type="submit"
+                                class="flex justify-center w-32 px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition duration-150 ease-in-out">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="flex" id="wrapper">
+
+        <div th:replace="clerk/fragments/sidebar :: sidebar"></div>
+
+        <div id="main" class="flex-grow">
+            <div th:replace="clerk/fragments/topbar :: topbar"></div>
+            <hr>
+
+            <div id="content">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <h4 class="text-xl font-bold">Clerk Schedule Items</h4>
+                </div>
+
+                <div class="px-4">
+                    <table class="table-auto border-collapse border w-full">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-2">ID</th>
+                                <th class="px-4 py-2">Center</th>
+                                <th class="px-4 py-2">Month</th>
+                                <th class="px-4 py-2">Day Time</th>
+                                <th class="px-4 py-2">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="scheduleItem : ${scheduleItems}">
+                                <td class="border px-4 py-2" th:text="${scheduleItem.id}"></td>
+                                <td class="border px-4 py-2" th:text="${scheduleItem.center.name}"></td>
+                                <td class="border px-4 py-2" th:text="${scheduleItem.month}"></td>
+                                <td class="border px-4 py-2" th:text="${scheduleItem.daytime}"></td>
+                                <td class="border px-4 py-2 flex justify-center items-center">
+                                    <a th:href="${'/clerk/schedule/' + scheduleItem.id}">
+                                        <svg viewBox="0 0 16 16" class="h-6 w-6 fill-current text-blue-500"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                            <path fill-rule="evenodd"
+                                                d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

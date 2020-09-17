@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+    <div class="flex" id="wrapper">
+
+        <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+        <div id="main" class="flex-grow">
+            <div th:replace="admin/fragments/topbar :: topbar"></div>
+            <hr>
+
+            <div id="content">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <h4 class="text-xl font-bold">Schedule Item</h4>
+                </div>
+
+                <div class="px-4">
+                    <div>
+                        <h4 class="text-lg font-bold text-gray-900">Center</h4>
+                        <p class="mt-2 text-gray-700" th:text="${scheduleItem.center.name}"></p>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold text-gray-900">Clerk</h4>
+                        <p class="mt-2 text-gray-700" th:text="${scheduleItem.user.name}"></p>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold text-gray-900">Month</h4>
+                        <p class="mt-2 text-gray-700" th:text="${scheduleItem.month}"></p>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold text-gray-900">Time</h4>
+                        <p class="mt-2 text-gray-700" th:text="${scheduleItem.daytime}">0</p>
+                    </div>
+
+                    <div class="mt-6 flex justify-start items-center">
+                        <a class="px-4 py-2 bg-blue-500 rounded"
+                            th:href="${'/admin/schedule/' + scheduleItem.id + '/edit'}">Edit</a>
+
+                        <form th:action="${'/admin/schedule/' + scheduleItem.id + '/delete'}" method="post">
+                            <button class="px-4 py-2 bg-red-500 rounded ml-3" type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

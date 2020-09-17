@@ -1,0 +1,22 @@
+{
+  "name": "teafactory",
+  "version": "1.0.0",
+  "description": "A tea factory erp web application",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app",
+    "build": "npx tailwindcss build resources/css/app.css -o src/main/resources/static/css/app.css"
+  },
+  "keywords": [
+    "Tea",
+    "Factory",
+    "ERP"
+  ],
+  "author": "Rono",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^9.8.6",
+    "postcss-cli": "^7.1.2",
+    "tailwindcss": "^1.8.6"
+  }
+}

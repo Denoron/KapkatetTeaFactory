@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+    <div id="sidebar" class="min-h-screen w-24 md:w-64 bg-green-700 overflow-y-auto" th:fragment="sidebar">
+
+        <!-- Sidebar Header -->
+        <div class="h-20 flex justify-center items-center">
+            <div>
+                <svg class="w-auto h-12 mx-auto fill-current text-gray-500" viewBox="0 0 16 16"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path fill-rule="evenodd"
+                        d="M5.172 10.828a.5.5 0 0 0 .707 0l4.096-4.096V9.5a.5.5 0 1 0 1 0V5.525a.5.5 0 0 0-.5-.5H6.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z" />
+                </svg>
+            </div>
+            <div class="hidden md:block text-2xl text-white mx-4">Farmer</div>
+        </div>
+        <hr>
+
+        <div class="bg-green-700 hover:bg-green-500 p-3">
+            <a class="flex flex-col justify-center md:justify-start items-center md:flex-row" href="/farmer/dashboard"
+                th:href="@{/farmer/dashboard}">
+                <svg class="h-5 w-5 fill-current text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                </svg>
+                <span class="text-gray-300 text-xs sm:text-sm md:text-base ml-0 md:ml-3 mt-1 md:mt-0">Dashboard</span>
+            </a>
+        </div>
+        <div class="bg-green-700 hover:bg-green-500 p-3">
+            <a class="flex flex-col justify-center md:justify-start items-center md:flex-row" href="/farmer/accounts"
+                th:href="@{/farmer/accounts}">
+                <svg class="h-5 w-5 fill-current text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                    enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                    <g>
+                        <rect fill="none" class="h-5 w-5" />
+                    </g>
+                    <g>
+                        <g>
+                            <path
+                                d="M17,11c0.34,0,0.67,0.04,1,0.09V6.27L10.5,3L3,6.27v4.91c0,4.54,3.2,8.79,7.5,9.82c0.55-0.13,1.08-0.32,1.6-0.55 C11.41,19.47,11,18.28,11,17C11,13.69,13.69,11,17,11z" />
+                            <path
+                                d="M17,13c-2.21,0-4,1.79-4,4c0,2.21,1.79,4,4,4s4-1.79,4-4C21,14.79,19.21,13,17,13z M17,14.38c0.62,0,1.12,0.51,1.12,1.12 s-0.51,1.12-1.12,1.12s-1.12-0.51-1.12-1.12S16.38,14.38,17,14.38z M17,19.75c-0.93,0-1.74-0.46-2.24-1.17 c0.05-0.72,1.51-1.08,2.24-1.08s2.19,0.36,2.24,1.08C18.74,19.29,17.93,19.75,17,19.75z" />
+                        </g>
+                    </g>
+                </svg>
+                <span class="text-gray-300 text-xs sm:text-sm md:text-base ml-0 md:ml-3 mt-1 md:mt-0">Accounts</span>
+            </a>
+        </div>
+
+        <div class="bg-green-700 hover:bg-green-500 p-3">
+            <a class="flex flex-col justify-center md:justify-start items-center md:flex-row" href="/" th:href="@{/}">
+                <svg class="h-5 w-5 fill-current text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
+                <span class="text-gray-300 text-xs sm:text-sm md:text-base ml-0 md:ml-3 mt-1 md:mt-0">Home</span>
+            </a>
+        </div>
+
+        <div class="bg-green-700 hover:bg-green-500 p-3">
+            <a class="flex flex-col justify-center md:justify-start items-center md:flex-row" href="/logout"
+                th:href="@{/logout}">
+                <svg class="h-5 w-5 fill-current text-gray-300" xmlns="http://www.w3.org/2000/svg"
+                    enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                    <g>
+                        <rect fill="none" class="h-5 w-5" />
+                    </g>
+                    <g>
+                        <path
+                            d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z" />
+                    </g>
+                </svg>
+                <span class="text-gray-300 text-xs sm:text-sm md:text-base ml-0 md:ml-3 mt-1 md:mt-0">Sign Out</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

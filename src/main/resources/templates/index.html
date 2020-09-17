@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+    <header class="h-screen relative">
+        <div class="absolute top-0 inset-x-0">
+            <div class="container flex-grow-0 mx-auto py-2">
+                <div class="flex justify-between items-center">
+                    <div class="text-xl font-bold flex items-center">
+                        <span class="text-gray-900">TeaFactory</span>
+
+                        <div class="flex items-center ml-8">
+                            <a th:href="@{/}" class="text-green-700 text-sm px-4 py-2">Home</a>
+                            <a th:href="@{/faqs}" class="ml-3 text-gray-700 text-sm px-4 py-2">FAQs</a>
+                        </div>
+
+                    </div>
+
+                    <div th:if="${user != null}">
+                        <div class="relative inline-block text-left">
+                            <div>
+                                <span class="rounded-md shadow-sm">
+                                    <button type="button"
+                                        class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+                                        id="options-menu" aria-haspopup="true" aria-expanded="true">
+                                        <span th:text="${user.name}"></span>
+                                        <svg class="-mr-1 ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+                                </span>
+                            </div>
+
+                            <div id="dropdownMenu"
+                                class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg hidden">
+                                <div class="rounded-md bg-white shadow-xs">
+                                    <div class="py-1" role="menu" aria-orientation="vertical"
+                                        aria-labelledby="options-menu">
+                                        <a th:if="${user.role.title == 'Admin'}" href="/admin/dashboard" th:href="@{/admin/dashboard}"
+                                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                            role="menuitem">Dashboard</a>
+                                        <a th:if="${user.role.title == 'Clerk'}" href="/admin/dashboard" th:href="@{/clerk/dashboard}"
+                                           class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                           role="menuitem">Dashboard</a>
+                                        <a th:if="${user.role.title == 'Farmer'}" href="/farmer/dashboard" th:href="@{/farmer/dashboard}"
+                                            class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                            role="menuitem">Dashboard</a>
+                                        <form method="POST" th:action="@{/logout}">
+                                            <button type="submit"
+                                                class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900"
+                                                role="menuitem">
+                                                Sign out
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div th:if="${user == null}" class="flex justify-between items-center">
+                        <a th:href="@{/register}"
+                            class="ml-3 flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-700 border border-transparent rounded hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition duration-150 ease-in-out">Register</a>
+                        <a th:href="@{/login}"
+                            class="ml-3 flex justify-center px-4 py-2 text-sm font-medium text-green-700 hover:text-white bg-white border border-green-700 rounded hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition duration-150 ease-in-out">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="h-screen">
+            <div class="container mx-auto h-full">
+                <div class="flex justify-between items-center h-full">
+                    <div class="w-1/2 flex flex-col justify-center items-baseline place-items-start">
+                        <h2 class="mt-6 text-4xl text-left font-extrabold text-gray-900 leading-9">
+                            Tea growing has never been greener
+                        </h2>
+
+                        <div class="mt-6 text-gray-700 text-left text-lg leading-9">
+                            Track your tea sales and make transaction on the same
+                            plartform.
+                            We're strive
+                            to
+                            make the whole
+                            process of tealeaves excahnge between farmers and <span th:text="${app}"></span> a no
+                            brainer.
+                        </div>
+
+                        <div class="mt-12">
+                            <a th:href="@{/register}"
+                                class="justify-center px-4 py-3 text-xl font-medium text-white bg-green-700 border border-transparent rounded hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition duration-150 ease-in-out">Get
+                                Started</a>
+                        </div>
+                    </div>
+                    <div class=" w-1/2 flex justify-center items-center h-full">
+                        <img class="w-2/3 h-auto" src="/img/illustration.svg" alt="Header Illustration">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <div class="py-20 bg-gray-200">
+        <div class="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20">
+            <div>
+                <div>
+                    <svg class="h-16 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path
+                            d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" />
+                    </svg>
+                </div>
+                <div class="text-gray-700 mt-4 leading-6">
+                    Earn as fast as possible in the most effective way at a lesser cost. No hidden charges, you just
+                    have to create the account and start earning.
+                </div>
+            </div>
+            <div>
+                <div>
+                    <svg class="h-16 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" />
+                    </svg>
+                </div>
+                <div class="text-gray-700 mt-4 leading-6">
+                    Get notified of anything happening, factory wide, in your center or in your individual account,
+                    first hand in formation from the authorities.
+                </div>
+            </div>
+            <div>
+                <div>
+                    <svg class="h-16 fill-current text-green-700" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" /></svg>
+                </div>
+                <div class="text-gray-700 mt-4 leading-6">
+                    Keep track your cummulative tea weight at any particulay period of time, with no pain at all, and
+                    find any errors as soon as possible.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-8 bg-white">
+
+        <div class="container mx-auto flex">
+            <div class="flex flex-col">
+                <div>
+                    <svg class="h-8 w-8 fill-current text-green-600" viewBox="0 0 16 16"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path fill-rule="evenodd"
+                            d="M5.172 10.828a.5.5 0 0 0 .707 0l4.096-4.096V9.5a.5.5 0 1 0 1 0V5.525a.5.5 0 0 0-.5-.5H6.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707z" />
+                    </svg>
+                </div>
+                <div>
+                    <span>&copy; 2020 All rights reserved</span> <br>
+                    by <span th:text="${app}"></span>
+                </div>
+            </div>
+
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </footer>
+
+    <script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

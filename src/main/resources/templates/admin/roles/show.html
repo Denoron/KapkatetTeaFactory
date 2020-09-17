@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex" id="wrapper">
+
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+
+    <div id="main" class="flex-grow">
+        <div th:replace="admin/fragments/topbar :: topbar"></div>
+        <hr>
+
+        <div id="content">
+            <div class="flex items-center justify-between px-4 py-3">
+                <h4 class="text-xl font-bold" th:text="${role.title}"></h4>
+            </div>
+
+            <div class="px-4">
+                <div>
+                    <h4 class="text-lg font-bold text-gray-700">Description</h4>
+                    <p class="mt-2 text-gray-500" th:text="${role.description}"></p>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="text-lg font-bold text-gray-700">Permissions</h4>
+
+                    <table class="table-auto border-collapse border w-full mt-2 text-gray-500">
+                        <thead>
+                        <tr>
+                            <th class="px-4 py-2">ID</th>
+                            <th class="px-4 py-2">Title</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="permission : ${role.permissions}">
+                            <td class="border px-4 py-2" th:text="${permission.id}"></td>
+                            <td class="border px-4 py-2" th:text="${permission.title}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 flex justify-start items-center">
+                    <a class="px-4 py-2 bg-blue-500 rounded" th:href="${'/admin/roles/' + role.id + '/edit'}">Edit</a>
+                    <form th:action="${'/admin/roles/' + role.id + '/delete'}" method="post">
+                        <button class="px-4 py-2 bg-red-500 rounded ml-3" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>

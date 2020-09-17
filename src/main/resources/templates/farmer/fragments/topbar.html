@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+    <div id="top-bar" class="flex justify-between items-center bg-white px-4 py-3 h-20 shadow" th:fragment="topbar">
+        <div class="flex items-center">
+            <button id="sidebar-toggler">
+                <svg class="h-6 w-6 fill-current text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                </svg>
+            </button>
+            <div class="hidden sm:flex flex-grow  mx-4">
+                <div class="relative">
+                    <div class="absolute flex justify-center items-center inset-y-0">
+                        <svg class="h-6 w-6 fill-current text-gray-600 p-1" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path
+                                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                        </svg>
+                    </div>
+                    <input class="bg-gray-100 text-gray-600 block rounded-sm pl-10 pr-4 py-1" type="search"
+                        placeholder="Search for..." name="s" id="s">
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center">
+            <div class="block sm:hidden">
+                <svg class="h-6 w-6 fill-current text-gray-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 0h24v24H0z" fill="none" />
+                    <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                </svg>
+            </div>
+            <div class="border-solid border-l border-gray-300 h-12 mx-3"></div>
+            <div class="flex items-center">
+                <form action="/logout" method="post">
+                    <button type="submit"
+                            class="flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:border-teal-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div> <!-- End of the top bar -->
+</body>
+
+</html>

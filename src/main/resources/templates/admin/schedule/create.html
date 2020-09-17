@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title th:text="${title} + ' | ' + ${app}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" media="all" th:href="@{/css/app.css}" href="/css/app.css">
+</head>
+
+<body class="bg-gray-100">
+
+<div class="flex" id="wrapper">
+    <div th:replace="admin/fragments/sidebar :: sidebar"></div>
+    <div id="main" class="flex-grow">
+
+        <div th:replace="admin/fragments/topbar :: topbar"></div>
+        <hr>
+
+        <div id="content">
+            <div class="flex items-center justify-between px-4 py-3">
+                <h4 class="text-xl font-bold">Create Schedule Item</h4>
+            </div>
+
+            <div class="px-4">
+
+                <form th:action="@{/admin/schedule}" method="post">
+                    <div class="mt-6">
+                        <label for="center" class="block text-sm font-medium text-gray-700 leading-5">
+                            Center
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <select id="center" type="text" required name="centerId"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option value="" selected disabled>Choose Center...</option>
+                                <option th:each="center : ${centers}" th:value="${center.id}"
+                                        th:text="${center.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="user" class="block text-sm font-medium text-gray-700 leading-5">
+                            Clerk
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <select id="user" type="text" required  name="userId"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option value="" selected disabled>Choose Clerk...</option>
+                                <option th:each="user : ${users}" th:value="${user.id}"
+                                        th:text="${user.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="month" class="block text-sm font-medium text-gray-700 leading-5">
+                            Month
+                        </label>
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <select id="month" type="text" required name="month"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option value="" selected disabled>Choose Month...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="daytime" class="block text-sm font-medium text-gray-700 leading-5">
+                            Day Time
+                        </label>
+
+                        <div class="mt-1 rounded-md shadow-sm">
+                            <input id="daytime" type="time" required autofocus name="daytime"
+                                   class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-teal focus:border-teal-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5 "/>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-6">
+                        <button type="submit"
+                                class="flex justify-center w-32 px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green active:bg-green-700 transition duration-150 ease-in-out">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="/js/app.js" th:inline="javascript" th:src="@{/js/app.js}"></script>
+</body>
+
+</html>
